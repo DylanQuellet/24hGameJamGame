@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        
+
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
@@ -32,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
             lightHidden.SetActive(true);
             // Déplacement
             transform.Translate(move.normalized * speed * Time.deltaTime, Space.World);
+
+            float currentSpeed = move.magnitude;
+            float normalizedSpeed = currentSpeed / speed;
+            animator.SetFloat("Speed", normalizedSpeed);
+
 
             // Rotation vers la direction du mouvement
             Quaternion targetRotation = Quaternion.LookRotation(move);
@@ -52,9 +61,13 @@ public class PlayerMovement : MonoBehaviour
             // On compte le temps d'immobilité
             idleTimer += Time.deltaTime;
 
-            if (idleTimer >= 0.5f)
+            if (idleTimer >= 0.01f)
             {
                 animator.SetBool("isMoving", false);
+
+            }
+            if (idleTimer >= 0.3f)
+            {
                 lightShow.SetActive(true);
                 lightHidden.SetActive(false);
             }
