@@ -1,29 +1,63 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public float speed = 3f;
+    public float rotationSpeed = 10f;
     public Animator animator;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject lightShow;
+    public GameObject lightHidden;
+
+    private float idleTimer = 0f;
+
+    private void Start()
     {
-        
+        lightShow.SetActive(true);
+        lightHidden.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(h,0, v);
-        bool isMoving = move.magnitude > 0.1f;
-        animator.SetBool("isMoving", isMoving);
+        Vector3 move = new Vector3(h, 0, v);
+        bool isMovingInput = move.magnitude > 0.1f;
 
-        if (isMoving)
+
+        if (isMovingInput)
         {
-            transform.Translate(move.normalized * speed * Time.deltaTime);
+            lightShow.SetActive(false);
+            lightHidden.SetActive(true);
+            // Déplacement
+            transform.Translate(move.normalized * speed * Time.deltaTime, Space.World);
+
+            // Rotation vers la direction du mouvement
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+
+            // Animation
+            animator.SetBool("isMoving", true);
+
+            // Reset du timer
+            idleTimer = 0f;
+        }
+        else
+        {
+            // On compte le temps d'immobilité
+            idleTimer += Time.deltaTime;
+
+            if (idleTimer >= 0.5f)
+            {
+                animator.SetBool("isMoving", false);
+                lightShow.SetActive(true);
+                lightHidden.SetActive(false);
+            }
         }
     }
 }
