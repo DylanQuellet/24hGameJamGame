@@ -64,7 +64,9 @@ public class GameManager : MonoBehaviour
 
         // Désactive l'objet
         screamerObject.SetActive(false);
+        player.SetActive(false);
         player.transform.position = spawnPoint.transform.position;
+        player.SetActive(true);
         // réinitialise tous les mobs
         yield return new WaitForSeconds(0.1f);
         MobChasePlayer.ResetAllMobsPositions();
