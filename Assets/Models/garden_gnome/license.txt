@@ -1,0 +1,11 @@
+Model Information:
+* title:	Garden Gnome
+* source:	https://sketchfab.com/3d-models/garden-gnome-49d2473cbab64bc2b334fa8dc42aa181
+* author:	Arrangemonk (https://sketchfab.com/Arrangemonk9000)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Garden Gnome" (https://sketchfab.com/3d-models/garden-gnome-49d2473cbab64bc2b334fa8dc42aa181) by Arrangemonk (https://sketchfab.com/Arrangemonk9000) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

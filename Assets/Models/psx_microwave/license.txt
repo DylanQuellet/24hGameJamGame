@@ -1,0 +1,8 @@
+Model Information:
+* title:	PSX Microwave
+* source:	https://sketchfab.com/3d-models/psx-microwave-74b4e2e22f5a4870832f065b236db19b
+* author:	Charckes (https://sketchfab.com/charlesmoch)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Psx_floppa pixel texture
+* source:	https://sketchfab.com/3d-models/psx-floppa-pixel-texture-dcc57c44bc9b4cc883c05b966a4b719e
+* author:	U.A.C.WAD (https://sketchfab.com/hilalarican23)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Psx_floppa pixel texture" (https://sketchfab.com/3d-models/psx-floppa-pixel-texture-dcc57c44bc9b4cc883c05b966a4b719e) by U.A.C.WAD (https://sketchfab.com/hilalarican23) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
