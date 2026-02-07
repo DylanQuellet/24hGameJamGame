@@ -6,15 +6,15 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 3f;
     public float rotationSpeed = 10f;
     public Animator animator;
-    public GameObject lightShow;
-    public GameObject lightHidden;
+    public Light lightShow;
+    public Light lightHidden;
 
     private float idleTimer = 0f;
 
     private void Start()
     {
-        lightShow.SetActive(true);
-        lightHidden.SetActive(false);
+        lightShow.enabled = true;
+        lightHidden.enabled = false;
     }
 
     void Update()
@@ -32,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (isMovingInput)
         {
-            lightShow.SetActive(false);
-            lightHidden.SetActive(true);
+            lightShow.enabled = false;
+            lightHidden.enabled = true;
             // Déplacement
             transform.Translate(move.normalized * speed * Time.deltaTime, Space.World);
 
@@ -68,8 +68,8 @@ public class PlayerMovement : MonoBehaviour
             }
             if (idleTimer >= 0.3f)
             {
-                lightShow.SetActive(true);
-                lightHidden.SetActive(false);
+                lightShow.enabled = true;
+                lightHidden.enabled = false;
             }
         }
     }
