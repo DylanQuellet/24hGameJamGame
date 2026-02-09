@@ -91,14 +91,20 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float speed = 3f;
     public float rotationSpeed = 10f;
+    
 
     [Header("References")]
     public Animator animator;
     public Light lightShow;
     public Light lightHidden;
 
+    [Header("Control")]
+    public bool controlsEnabled = true;
+
     private CharacterController controller;
     private float idleTimer = 0f;
+    private float verticalVelocity = 0f;
+    private float gravity = -9.81f;
 
     private void Awake()
     {
@@ -111,6 +117,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!controlsEnabled)
+        {
+            animator.SetFloat("Speed", 0f);
+            animator.SetBool("isMoving", false);
+            return;
+        }
+
         // Input
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -149,10 +162,19 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
+        // Gravity
+        if (controller.isGrounded)
+        {
+            verticalVelocity = -1f; // Petite valeur négative pour rester collé au sol
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+
         // Movement via CharacterController
         Vector3 moveDir = move.normalized * speed;
-        // On applique la gravité pour rester collé au sol
-        moveDir.y = -9.81f * Time.deltaTime;
+        moveDir.y = verticalVelocity;
         controller.Move(moveDir * Time.deltaTime);
 
         // Détecte que le joueur bouge pour l'animation

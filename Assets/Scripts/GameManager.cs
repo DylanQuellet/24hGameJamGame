@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Bouuuu!!!");
 
+        player.GetComponentInParent<PlayerMovement>().controlsEnabled = false; // désactive le script de mouvement du joueur
+
         if (screamerCoroutine != null)
             StopCoroutine(screamerCoroutine);
 
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
     public void InitGameOver()
     {
         Debug.Log("ResetMobs");
+        player.GetComponentInParent<PlayerMovement>().controlsEnabled = true; // active le script de mouvement du joueur
     }
 
 }
