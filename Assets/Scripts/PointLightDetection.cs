@@ -8,9 +8,9 @@ public class PointLightDetection : MonoBehaviour
 
     [Header("Detection Settings")]
     public LayerMask targetMask;    // Layer des mobs
-    public LayerMask obstacleMask;  // Murs / décors
+    public LayerMask obstacleMask;  // Murs / dï¿½cors
     public float minIntensity = 0.2f;
-    public float checkRadius = 10f;
+    public float checkRadius = 20f;
 
     [Header("Debug")]
     public bool drawDebug = true;
@@ -26,7 +26,7 @@ public class PointLightDetection : MonoBehaviour
             return;
         }
 
-        // Récupère tous les mobs dans le rayon de la lumière
+        // Rï¿½cupï¿½re tous les mobs dans le rayon de la lumiï¿½re
         Collider[] targets = Physics.OverlapSphere(
             transform.position,
             pointLight.range,
@@ -53,7 +53,7 @@ public class PointLightDetection : MonoBehaviour
                 continue;
             }
 
-            // Atténuation de la lumière
+            // Attï¿½nuation de la lumiï¿½re
             float intensity = pointLight.intensity / (distance * distance);
 
             bool lit = intensity > minIntensity;
