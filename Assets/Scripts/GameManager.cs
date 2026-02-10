@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Screamers")]
     public GameObject BananaScreamer;
+    public GameObject GaryScreamer;
+    public GameObject CochonScreamer;
     public float duration = 1f;       // durée totale de l'effet
     public float shakeInterval = 0.05f; // intervalle entre les rotations
     public float minZ = -17f;
@@ -29,6 +31,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         BananaScreamer.SetActive(false);
+        GaryScreamer.SetActive(false);
+        CochonScreamer.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void Screamer()
+    public void Screamer(int WhichScreamer)
     {
         Debug.Log("Bouuuu!!!");
 
@@ -46,7 +50,23 @@ public class GameManager : MonoBehaviour
         if (screamerCoroutine != null)
             StopCoroutine(screamerCoroutine);
 
-        screamerCoroutine = StartCoroutine(ScreamerRoutine(BananaScreamer));
+        
+        switch (WhichScreamer)
+        {
+            case 0:
+                screamerCoroutine = StartCoroutine(ScreamerRoutine(BananaScreamer));
+                break;
+            case 1:
+                screamerCoroutine = StartCoroutine(ScreamerRoutine(GaryScreamer));
+                break;
+            case 2:
+                screamerCoroutine = StartCoroutine(ScreamerRoutine(CochonScreamer));
+                break;
+            default:
+                Debug.LogWarning("Invalid screamer index: " + WhichScreamer);
+                break;
+        }
+        
     }
 
     private IEnumerator ScreamerRoutine(GameObject screamerObject)

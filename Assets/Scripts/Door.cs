@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Door : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Door : MonoBehaviour
 
     [Header("Références")]
     public Transform doorModel;
+    public NavMeshObstacle navObstacle;
 
     [Header("Rotation")]
     [Tooltip("Rotation locale quand la porte est ouverte")]
@@ -49,6 +51,7 @@ public class Door : MonoBehaviour
     void OpenDoor()
     {
         isOpen = true;
+        
         StartCoroutine(OpenAnimation());
     }
 
@@ -66,5 +69,6 @@ public class Door : MonoBehaviour
         }
 
         doorModel.localRotation = openRotation;
+        navObstacle.enabled = false; // Désactive l'obstacle de navigation pour permettre le passage
     }
 }

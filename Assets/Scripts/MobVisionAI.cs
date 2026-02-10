@@ -7,6 +7,7 @@ public class MobVisionAI : MonoBehaviour
     public Transform player;
     public Animator animator;
     public NavMeshAgent agent;
+    public GameManager gameManager;
 
     [Header("Vision")]
     public float viewRadiusMoving = 10f;
@@ -23,6 +24,9 @@ public class MobVisionAI : MonoBehaviour
 
     [Header("Recherche")]
     public float lostDelay = 5f;
+
+    [Header("Behaviour")]
+    public float DeathDistance = 0.5f;
 
     private bool pursuing = false;
     private bool lost = false;
@@ -89,6 +93,12 @@ public class MobVisionAI : MonoBehaviour
         // 3. Test distance
         Vector3 dir = player.position - transform.position;
         float distance = dir.magnitude;
+
+        if (distance <= DeathDistance)
+        {
+            gameManager.Screamer(2); // ou 1 ou 2 selon le mob
+            return false; // on ne veut pas que le mob continue à poursuivre après avoir “tué” le joueur
+        }
 
         if (distance > currentRadius)
             return false;
