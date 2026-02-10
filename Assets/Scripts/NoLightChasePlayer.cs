@@ -40,12 +40,12 @@ public class NoLightChasePlayer : MonoBehaviour
         // Si le mob est �clair� -> il ne bouge pas mais devient alert�
         if (lightReceiver.isIlluminated)
         {
-            agent.speed = 200;
+            agent.speed = 100;
             return;
         }
         else
         {
-            agent.speed = 2;
+            agent.speed = 0.2f;
         }
 
 
