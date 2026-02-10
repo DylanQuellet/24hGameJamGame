@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private float idleTimer = 0f;
 
+    public bool BountyFound = false;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
