@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     public float minZ = -17f;
     public float maxZ = -13f;
 
+    [Header("Death")]
+    public GameObject deathPrefab;
+    public int deathCount = 0;
+
     private Coroutine screamerCoroutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,6 +71,16 @@ public class GameManager : MonoBehaviour
         // Désactive l'objet
         screamerObject.SetActive(false);
         player.SetActive(false);
+        Vector3 DeathPoint = player.transform.position;
+        float randomY = Random.Range(0f, 360f);
+        Quaternion randomRot = Quaternion.Euler(0f, randomY, 0f);
+        if (deathPrefab != null)
+        {
+            Instantiate(deathPrefab, DeathPoint, randomRot);
+        }
+        PlayerKey pKeys = player.GetComponent<PlayerKey>();
+        KeyManager.Instance.ResetOwnedKeys(pKeys, DeathPoint);
+        deathCount++;
         player.transform.position = spawnPoint.transform.position;
         player.SetActive(true);
         // réinitialise tous les mobs
