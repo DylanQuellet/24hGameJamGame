@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private float idleTimer = 0f;
     private float verticalVelocity = 0f;
     private float gravity = -9.81f;
+
+    public bool BountyFound = false;
 
     private void Awake()
     {
