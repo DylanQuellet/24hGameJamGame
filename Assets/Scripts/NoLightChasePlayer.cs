@@ -45,7 +45,7 @@ public class NoLightChasePlayer : MonoBehaviour
         }
         else
         {
-            agent.speed = 1;
+            agent.speed = 2;
         }
 
 
