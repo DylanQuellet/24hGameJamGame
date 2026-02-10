@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetFloat("Speed", 0f);
             animator.SetBool("isMoving", false);
+            ApplyGravityOnly();
             return;
         }
 
@@ -96,4 +97,16 @@ public class PlayerMovement : MonoBehaviour
         // Détecte que le joueur bouge pour l'animation
         animator.SetBool("isMoving", isMovingInput);
     }
+
+    private void ApplyGravityOnly()
+    {
+        if (controller.isGrounded)
+            verticalVelocity = -1f;
+        else
+            verticalVelocity += gravity * Time.deltaTime;
+
+        Vector3 move = new Vector3(0, verticalVelocity, 0);
+        controller.Move(move * Time.deltaTime);
+    }
+
 }

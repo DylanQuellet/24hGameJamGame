@@ -17,6 +17,9 @@ public class ApplicationForEmploymentScreamer : MonoBehaviour
     [Header("AplicationForEmploymentObject")]
     public GameObject ApplicationForEmploymentObject;
 
+    [Header("Audio")]
+    public AudioSource screamerAudio; // assigne un AudioSource avec le son du screamer
+
     private Coroutine screamerCoroutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,6 +50,15 @@ public class ApplicationForEmploymentScreamer : MonoBehaviour
 
     private IEnumerator ScreamerRoutine(GameObject screamerObject)
     {
+
+        // Joue le son du screamer
+        if (screamerAudio != null && screamerAudio.clip != null)
+        {
+            // Lancement sans couper d'autres sons
+            screamerAudio.pitch = Random.Range(0.95f, 1.05f);
+            screamerAudio.PlayOneShot(screamerAudio.clip);
+        }
+
         // Active l'objet
         screamerObject.SetActive(true);
 

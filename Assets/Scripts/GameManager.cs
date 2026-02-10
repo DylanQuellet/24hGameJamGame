@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     public float minZ = -17f;
     public float maxZ = -13f;
 
+    [Header("Start Screen")]
+    public GameObject startScreen;  // UI Canvas ou Panel qui explique l'histoire
+    public float startScreenDuration = 5f; // durée d'affichage avant de commencer le jeu
+
     [Header("Death")]
     public GameObject deathPrefab;
     public int deathCount = 0;
@@ -33,12 +37,32 @@ public class GameManager : MonoBehaviour
         BananaScreamer.SetActive(false);
         GaryScreamer.SetActive(false);
         CochonScreamer.SetActive(false);
+
+        // Désactive le joueur au départ
+        player.GetComponent<PlayerMovement>().controlsEnabled = false;
+
+        // Affiche l'écran de début
+        if (startScreen != null)
+            startScreen.SetActive(true);
+
+        // Lance la coroutine pour cacher l'écran et activer le jeu
+        StartCoroutine(StartGameSequence());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator StartGameSequence()
     {
-        
+        // Attend la durée d'affichage
+        yield return new WaitForSeconds(startScreenDuration);
+
+        // Cache l'écran de début
+        if (startScreen != null)
+            startScreen.SetActive(false);
+
+        // Active le contrôle du joueur
+        player.GetComponent<PlayerMovement>().controlsEnabled = true;
+
+        // Optionnel : tu peux activer d'autres systèmes de jeu ici
+        GamePlaying = true;
     }
 
     public void Screamer(int WhichScreamer)

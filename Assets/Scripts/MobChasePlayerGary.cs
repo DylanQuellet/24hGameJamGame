@@ -15,11 +15,12 @@ public class MobChasePlayerGary : MonoBehaviour
     public float DeathDistance = 1.5f;
 
     private bool alerted = false; // le mob a été alerté au moins une fois
+    private bool playerInDeath = false; // le joueur est déjà mort à cause de ce mob, pour éviter les multiples morts en un instant
 
-   
+
     void Start()
     {
-        
+        playerInDeath = false;
         agent.isStopped = true; // départ immobile
     }
 
@@ -35,10 +36,10 @@ public class MobChasePlayerGary : MonoBehaviour
         {
             alerted = true;
             //agent.isStopped = true;
-            return;
+            //return;
         }
 
-        // ----- Si jamais alerté : reste immobile -----
+        // ----- Si jamais pas alerté : reste immobile -----
         if (!alerted)
         {
             agent.isStopped = true;
@@ -50,11 +51,23 @@ public class MobChasePlayerGary : MonoBehaviour
         agent.SetDestination(player.position);
 
         // ----- Stop si proche du joueur -----
-        if (distanceToPlayer <= DeathDistance)
+        if (distanceToPlayer <= DeathDistance && !playerInDeath)
         {
+            playerInDeath = true; // pour éviter de déclencher plusieurs fois le screamer
             agent.isStopped = true;
+            alerted = false;
             gameManager.Screamer(1);
             // L'état alerté reste actif, Gary ne “oublie” jamais
+        }
+
+        if (distanceToPlayer > 5*DeathDistance)
+        {
+            playerInDeath = false; // réinitialise l'état de “mort” si le joueur s'éloigne suffisamment
+        }
+
+        if (distanceToPlayer > 50f)
+        {
+            alerted = false; // réinitialise l'état alerté si le joueur s'éloigne très loin
         }
     }
 
