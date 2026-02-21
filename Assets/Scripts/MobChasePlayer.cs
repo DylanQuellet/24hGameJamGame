@@ -12,7 +12,7 @@ public class MobChasePlayer : MonoBehaviour
     public GameManager gameManager;
 
     [Header("Behaviour")]
-    public float stopDistance = 1.5f;
+    public float DeathDistance = 0.5f;
     public float chaseDistance = 15f;
 
     private bool alerted = false; // le mob a été éclairé au moins une fois
@@ -66,11 +66,11 @@ public class MobChasePlayer : MonoBehaviour
         agent.SetDestination(player.position);
 
         // Stop à courte distance
-        if (distanceToPlayer <= stopDistance)
+        if (distanceToPlayer <= DeathDistance)
         {
             agent.isStopped = true;
             alerted = false;
-            gameManager.Screamer();
+            gameManager.Screamer(0);
         }
     }
 

@@ -1,0 +1,38 @@
+# Blender 3.6.0 MTL File: 'None'
+# www.blender.org
+
+newmtl COQUILLE
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd coquille/Matériau.003_Base_color.png
+map_Ns coquille/Matériau.003_Roughness.png
+map_refl coquille/Matériau.003_Metallic.png
+map_Bump -bm 1.000000 coquille/Matériau.003_Normal_OpenGL.png
+
+newmtl CORPS
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd corps/Matériau_Base_color.png
+map_Ns corps/Matériau_Roughness.png
+map_refl corps/Matériau_Metallic.png
+map_Bump -bm 1.000000 corps/Matériau_Normal_OpenGL.png
+
+newmtl OEIL
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd oeil/Matériau.002_Base_color.png
+map_Ns oeil/Matériau.002_Roughness.png
+map_refl oeil/Matériau.002_Metallic.png
+map_Bump -bm 1.000000 oeil/Matériau.002_Normal_OpenGL.png
